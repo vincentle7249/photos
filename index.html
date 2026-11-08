@@ -42,6 +42,24 @@
     transition: background .15s;
   }
   a.btn:hover, a.btn:focus { background: #1a5fd0; }
+  button.btn2 {
+    display: block;
+    width: 100%;
+    margin-top: 12px;
+    padding: 12px 16px;
+    border: 1px solid #c7cdd6;
+    border-radius: 10px;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+  }
+  button.btn2:hover, button.btn2:focus { border-color: #1a5fd0; color: #1a5fd0; }
+  @media (prefers-color-scheme: dark) {
+    button.btn2 { border-color: #333a45; }
+  }
   .hint {
     margin-top: 22px;
     padding-top: 20px;
@@ -70,12 +88,22 @@
   <p>Upload or download photos. Works in any browser — no app needed.</p>
 
   <a class="btn" href="https://vinserver.tailb05517.ts.net/">Open Photo Share →</a>
+  <button class="btn2" id="knock" type="button">Door closed? Enter access code</button>
 
   <div class="hint">
     <p><strong>You'll need a login.</strong> Ask Vincent for the username and password — there's no sign-up.</p>
     <p><strong>Got a link instead?</strong> A share link opens straight to one file or folder; no login required.</p>
-    <p><strong>Page not loading?</strong> The public door closes on its own when nobody is using it — ask Vincent to open it, then reload. Some work or school networks block sites like this too; a different network or your phone's cellular data can help.</p>
+    <p><strong>"The door is closed"?</strong> The site is only reachable while it's in use. Enter the access code from Vincent to open it for 30 minutes, then go back to the button above.</p>
+    <p><strong>Still not loading?</strong> Some work or school networks block sites like this; a different network or your phone's cellular data can help.</p>
   </div>
 </main>
+<script>
+  document.getElementById('knock').addEventListener('click', function () {
+    var code = window.prompt('Access code (ask Vincent):');
+    if (!code) return;
+    window.location.href = 'https://vinserver.tailb05517.ts.net/knock?code=' +
+      encodeURIComponent(code.trim());
+  });
+</script>
 </body>
 </html>
